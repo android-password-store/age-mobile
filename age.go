@@ -1,4 +1,4 @@
-package age_mobile
+package ageMobile
 
 import (
 	"bytes"
@@ -6,6 +6,11 @@ import (
 
 	"filippo.io/age"
 )
+
+type Keypair struct {
+	PrivateKey string
+	PublicKey  string
+}
 
 func Encrypt(in []byte, publicKey string) ([]byte, error) {
 	recipient, err := age.ParseX25519Recipient(publicKey)
@@ -37,7 +42,7 @@ func Decrypt(in []byte, privateKey string) ([]byte, error) {
 	}
 
 	out := &bytes.Buffer{}
-	
+
 	r, err := age.Decrypt(bytes.NewBuffer(in), identity)
 	if err != nil {
 		return nil, err
@@ -48,4 +53,16 @@ func Decrypt(in []byte, privateKey string) ([]byte, error) {
 	}
 
 	return out.Bytes(), nil
+}
+
+func GenerateKeypair() (*Keypair, error) {
+	identity, err := age.GenerateX25519Identity()
+	if err != nil {
+		return nil, err
+	}
+
+	return &Keypair{
+		PrivateKey: identity.Recipient().String(),
+		PublicKey:  identity.String(),
+	}, nil
 }
