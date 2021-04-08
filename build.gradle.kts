@@ -59,9 +59,14 @@ publishing {
   }
   repositories {
     maven {
-      val releasesRepoUrl = uri("$buildDir/repos/releases")
-      val snapshotsRepoUrl = uri("$buildDir/repos/snapshots")
+      val hostUrl = "https://oss.sonatype.org/"
+      val releasesRepoUrl = uri("$hostUrl/service/local/staging/deploy/maven2/")
+      val snapshotsRepoUrl = uri("$hostUrl/content/repositories/snapshots/")
       url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+      credentials {
+        username = findProperty("mavenUsername") as String?
+        password = findProperty("mavenPassword") as String?
+      }
     }
   }
 }
