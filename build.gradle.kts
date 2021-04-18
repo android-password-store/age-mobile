@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.android-password-store"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.0"
 
 val gomobileAar = file("$projectDir/out/agemobile.aar")
 val gomobileSourcesJar = file("$projectDir/out/agemobile-sources.jar")
