@@ -6,19 +6,17 @@ plugins {
 group = "com.github.android-password-store"
 version = "0.2.0-SNAPSHOT"
 
-val gomobileAar = file("$projectDir/out/agemobile.aar")
-val gomobileSourcesJar = file("$projectDir/out/agemobile-sources.jar")
+val gomobileAar = file("$projectDir/dist/android/ageMobile.aar")
+val gomobileSourcesJar = file("$projectDir/dist/android/ageMobile-sources.jar")
 val gomobileArtifact = artifacts.add("archives", gomobileAar) {
-    type = "aar"
+  type = "aar"
 }
 val gomobileSourcesArtifact = artifacts.add("archives", gomobileSourcesJar) {
-    type = "jar"
+  type = "jar"
 }
 
 tasks.register<Exec>("buildGomobile") {
-  commandLine("gomobile", "init")
-  commandLine("mkdir", "-p", "${gomobileAar.parentFile}")
-  commandLine("gomobile", "bind", "-target=android", "-o", "$gomobileAar", "github.com/sphericalkat/age-mobile")
+  commandLine("./build.sh")
 }
 
 publishing {

@@ -1,4 +1,4 @@
-module github.com/sphericalkat/age-mobile
+module github.com/android-password-store/age-mobile
 
 go 1.16
 
