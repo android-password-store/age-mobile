@@ -9,10 +9,12 @@ version = "0.2.0-SNAPSHOT"
 val gomobileAar = file("$projectDir/dist/android/ageMobile.aar")
 val gomobileSourcesJar = file("$projectDir/dist/android/ageMobile-sources.jar")
 val gomobileArtifact = artifacts.add("archives", gomobileAar) {
-  type = "aar"
+  type = null
+  extension = "aar"
 }
 val gomobileSourcesArtifact = artifacts.add("archives", gomobileSourcesJar) {
-  type = "jar"
+  type = "sources"
+  extension = "jar"
 }
 
 tasks.register<Exec>("buildGomobile") {
