@@ -6,17 +6,6 @@ plugins {
 group = "com.github.android-password-store"
 version = "0.2.0-SNAPSHOT"
 
-val gomobileAar = file("$projectDir/dist/android/ageMobile.aar")
-val gomobileSourcesJar = file("$projectDir/dist/android/ageMobile-sources.jar")
-val gomobileArtifact = artifacts.add("archives", gomobileAar) {
-  type = null
-  extension = "aar"
-}
-val gomobileSourcesArtifact = artifacts.add("archives", gomobileSourcesJar) {
-  type = "sources"
-  extension = "jar"
-}
-
 tasks.register<Exec>("buildGomobile") {
   commandLine("./build.sh")
 }
@@ -25,8 +14,7 @@ publishing {
   publications {
     create<MavenPublication>("ageMobile") {
       artifactId = "age-mobile"
-      artifact(gomobileArtifact)
-      artifact(gomobileSourcesArtifact)
+      artifact("dist/android/ageMobile.aar")
       pom {
         name.set("age-mobile")
         description.set("Gomobile-based bindings to the age encryption tool")
