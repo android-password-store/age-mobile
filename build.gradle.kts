@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.android-password-store"
-version = "0.2.0-SNAPSHOT"
+version = "0.2.0"
 
 tasks.register<Exec>("buildGomobile") {
   commandLine("./build.sh")
