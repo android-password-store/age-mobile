@@ -10,6 +10,8 @@ tasks.register<Exec>("buildGomobile") {
   commandLine("./build.sh")
 }
 
+tasks.getByName("publish").dependsOn(tasks.getByName("buildGomobile"))
+
 publishing {
   publications {
     create<MavenPublication>("ageMobile") {
